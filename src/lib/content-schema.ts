@@ -18,13 +18,29 @@ export const hotspotContentBlockSchema = z.discriminatedUnion('type', [
   }),
 ]);
 
-export const hotspotFrameSchema = z.object({
-  x: z.number().min(0).max(100),
-  y: z.number().min(0).max(100),
+// The hotspot frame must always stay fully inside the image. width/height
+// are bounded to [MIN_SIZE, 100], x/y to [0, 100], and the two refine()
+// checks below reject any combination that would still let the frame
+// extend past the right or bottom edge. Keep MIN_SIZE in sync with the
+// equivalent constant in hotspot-frame-field-type.js.
+const HOTSPOT_MIN_SIZE = 3;
 
-  width: z.number().min(0).max(100),
-  height: z.number().min(0).max(100),
-});
+export const hotspotFrameSchema = z
+  .object({
+    x: z.number().min(0).max(100),
+    y: z.number().min(0).max(100),
+
+    width: z.number().min(HOTSPOT_MIN_SIZE).max(100),
+    height: z.number().min(HOTSPOT_MIN_SIZE).max(100),
+  })
+  .refine((frame) => frame.x + frame.width <= 100, {
+    message: 'Hotspot frame extends past the right edge of the image (x + width > 100).',
+    path: ['width'],
+  })
+  .refine((frame) => frame.y + frame.height <= 100, {
+    message: 'Hotspot frame extends past the bottom edge of the image (y + height > 100).',
+    path: ['height'],
+  });
 
 export const hotspotBlockSchema = z.object({
   id: z.string().min(1),

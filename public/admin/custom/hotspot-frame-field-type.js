@@ -5,6 +5,14 @@
  * frame defined in % (x, y, width, height) directly on the scroller image,
  * instead of filling in 4 separate numeric fields. 
  *
+ * The frame is always kept fully inside the image: it can be moved and
+ * resized freely, but never dragged past any edge. This is enforced in
+ * three places: while dragging (startDrag), when reading a stored value
+ * (getFrame/clampFrame), and at save time (isValid). Keep this in sync
+ * with the equivalent bounds in content-schema.ts, otherwise a frame
+ * could pass validation here but still fail the Zod check at build time
+ * (or vice versa).
+ *
  * Stored value (a single field instead of 4):
  *   frame:
  *     x: 12.3
@@ -29,6 +37,18 @@
     return Math.round(v * 10) / 10;
   }
 
+  // Sanitizes a frame so it always stays fully inside the image:
+  // width/height are bounded first (between MIN_SIZE and 100), then x/y
+  // are bounded so that x + width <= 100 and y + height <= 100. Used
+  // both when reading a stored value and as a safety net during drag.
+  function clampFrame(frame) {
+    var width = clamp(frame.width, MIN_SIZE, 100);
+    var height = clamp(frame.height, MIN_SIZE, 100);
+    var x = clamp(frame.x, 0, 100 - width);
+    var y = clamp(frame.y, 0, 100 - height);
+    return { x: round1(x), y: round1(y), width: round1(width), height: round1(height) };
+  }
+
   // Control (editable part)
 
   var FrameControl = createClass({
@@ -39,23 +59,54 @@
     getFrame: function () {
       var value = this.props.value;
       var def = this.getDefaultFrame();
-      if (value && typeof value === 'object') {
-        // console.log("x:      ", typeof value.x === 'number' ? value.x : def.x)
-        // console.log("y:      ", typeof value.y === 'number' ? value.y : def.y)
-        // console.log("width:  ", typeof value.width === 'number' ? value.width : def.width)
-        // console.log("height: ", typeof value.height === 'number' ? value.height : def.height)
-        return {
-          x: typeof value.x === 'number' ? value.x : def.x,
-          y: typeof value.y === 'number' ? value.y : def.y,
-          width: typeof value.width === 'number' ? value.width : def.width,
-          height: typeof value.height === 'number' ? value.height : def.height,
-        };
-      }
-      return def;
+      var raw =
+        value && typeof value === 'object'
+          ? {
+              x: typeof value.x === 'number' ? value.x : def.x,
+              y: typeof value.y === 'number' ? value.y : def.y,
+              width: typeof value.width === 'number' ? value.width : def.width,
+              height: typeof value.height === 'number' ? value.height : def.height,
+            }
+          : def;
+      return clampFrame(raw);
     },
 
     handleReset: function () {
       this.props.onChange(this.getDefaultFrame());
+    },
+
+    // Rejects corrupted/missing data, and any frame that would extend
+    // outside the image — the frame must always be fully contained.
+    isValid: function (value) {
+      if (!value || typeof value !== 'object') {
+        return { error: { message: 'The hotspot frame must be set.' } };
+      }
+
+      var hasValidNumbers = ['x', 'y', 'width', 'height'].every(function (key) {
+        return typeof value[key] === 'number' && isFinite(value[key]);
+      });
+
+      if (!hasValidNumbers) {
+        return { error: { message: 'x, y, width and height must all be numbers.' } };
+      }
+
+      if (value.width <= 0 || value.height <= 0) {
+        return { error: { message: 'Width and height must be greater than zero.' } };
+      }
+
+      if (value.x < 0 || value.y < 0) {
+        return { error: { message: 'The frame cannot start outside the image (x and y must be >= 0).' } };
+      }
+
+      if (value.x + value.width > 100) {
+        return { error: { message: 'The frame extends past the right edge of the image.' } };
+      }
+
+      if (value.y + value.height > 100) {
+        return { error: { message: 'The frame extends past the bottom edge of the image.' } };
+      }
+
+      return true;
     },
 
     // mode: 'move' or 'resize'
@@ -140,6 +191,7 @@
                 maxWidth: '100%',
                 lineHeight: 0,
                 userSelect: 'none',
+                overflow: 'hidden', // visual safety net: never show a frame past the image
               },
             },
             h('img', {
