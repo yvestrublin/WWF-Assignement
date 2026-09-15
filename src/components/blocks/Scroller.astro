@@ -10,7 +10,7 @@ interface Props {
 const { scroller } = Astro.props;
 ---
 
-<section class="scroller relative z-2">
+<section class="scroller relative z-2 [&_a]:text-[#2a6788] [&_a]:font-medium [&_a]:underline [&_a]:border-b [&_a]:border-dotted [&_a:hover]:border-solid">
   
   {/* Zoom wrapper */}
   <div class="scroller__zoom_wrapper overflow-hidden sticky top-0 z-3 h-screen bg-linear-to-br from-[#4e8c6f] to-[#7da596]">
@@ -57,7 +57,7 @@ const { scroller } = Astro.props;
 
             <div 
               class:list={[
-                "flex flex-wrap items-center justify-center z-50 pb-[30vh]",
+                "flex flex-wrap items-center justify-center z-50 pb-[30vh] mx-2 md:mx-3 lg:mx-0",
                 index !== 0 ? 'pt-[50vh]' : ''
               ]}
               >
@@ -72,7 +72,7 @@ const { scroller } = Astro.props;
                 {...(block.type === 'hotspots' ? { 'data-type': 'hotspot', 'data-id': block.id, 'data-x': block.frame.x, 'data-y': block.frame.y, 'data-width': block.frame.width, 'data-height': block.frame.height, 'data-side': block.side } : { 'data-type': 'text' })}
               >
                 <div
-                  class='scroller__content box-border p-8 bg-white/85 rounded-xl text-[17px] sm:text-[18px] lg:text-[20px] 2xl:text-[22px] font-[Open_Sans] space-y-6 [&_a]:text-blue-600 [&_a]:font-medium [&_a]:underline [&_a:hover]:text-blue-800'
+                  class='scroller__content box-border p-8 bg-white/85 rounded-xl text-[17px] sm:text-[18px] lg:text-[20px] 2xl:text-[22px] font-[Open_Sans] space-y-6'
                 >
 
                   {/* Text block type */}
@@ -83,7 +83,7 @@ const { scroller } = Astro.props;
                   {/* Hotspot block type */}
                   {block.type === 'hotspots' && (
                     <>
-                      <h3 class="text-[250%] md:text-[180%] uppercase font-[WWF]">{block.title}</h3>
+                      <h3 class="text-[160%] md:text-[180%] lg:text-[250%] uppercase font-[WWF]">{block.title}</h3>
 
                       {block.content.map((content) => (
                         content.type === 'text' ? (
