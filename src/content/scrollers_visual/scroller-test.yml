@@ -1,0 +1,21 @@
+scroller_id: 8e1ae226-9920-492e-ac8d-6ff26495d6b4
+title: Tiger in Asia
+image: /uploads/tiger-preys-asia.jpg
+blocks:
+  - type: hotspots
+    id: 02779228-2784-498c-8268-1c4c9cfe062b
+    title: Sambar deer
+    side: right
+    frame:
+      height: 33.1
+      width: 19.5
+      x: 46.7
+      y: 46.7
+    content:
+      - type: text
+        content: Sambar deer are one of the most important tiger prey species. They are often abundant in tiger reserves in India and Nepal Indian. They can also be found across Southeast Asia but are much rarer in the region due to hunting. The IUCN lists sambar deer as Vulnerable.
+      - type: image
+        image:
+          src: /uploads/sambar_deer.jpg
+          alt: Sambar deer
+          caption: Sambar foal and its mother in Ranthambore Tiger Reserve, India © Martin Harvey / WWF

@@ -1,0 +1,115 @@
+scroller_id: cfb25fad-e9d9-483f-9d22-cbea5dd6c089
+title: Tiger in Asia
+image: /uploads/tiger-preys-asia.jpg
+blocks:
+  - type: texts
+    text: |-
+      We talk a lot about _tiger prey_, but what animals do tigers eat?
+
+      The most important tiger prey are often ungulates, which are mammals with hooves, such as large deer, wild cattle, and wild pigs. Let’s take a look at some of the places where tiger prey are found.
+  - type: hotspots
+    id: fb74505d-b74f-49b6-b4d2-922616eb40f0
+    title: Sambar deer
+    side: right
+    content:
+      - type: text
+        content: Sambar deer are one of the most important tiger prey species. They are often abundant in tiger reserves in India and Nepal Indian. They can also be found across Southeast Asia but are much rarer in the region due to hunting. The IUCN lists sambar deer as Vulnerable.
+      - type: image
+        image:
+          src: /uploads/sambar_deer.jpg
+          alt: Samba deer
+          caption: Sambar foal and its mother in Ranthambore Tiger Reserve, India © Martin Harvey / WWF
+    frame:
+      height: 39.3
+      width: 16.4
+      x: 48.9
+      y: 42.6
+  - type: hotspots
+    id: ce316738-90a0-43e7-a6b9-caed5f87ffd0
+    title: Wild Pig
+    side: left
+    content:
+      - type: text
+        content: Wild pigs are the most widely distributed tiger prey species and can be commonly found across Asia and occur in every landscape in which tigers are found. On the island of Sumatra (Indonesia) they are one of the most important tiger prey species. Female wild pig can have up to two litters of piglets per year, with 4-8 piglets per litter.
+      - type: image
+        image:
+          src: /uploads/wild_pig.jpg
+          alt: Wild Pig
+          caption: Wild boar have brown fur that provides excellent camouflage in the forest. © Ola Jennersten / WWF-Sweden
+    frame:
+      height: 20.9
+      width: 20.1
+      x: 66.1
+      y: 79.1
+  - type: hotspots
+    id: ddb2b9aa-6c1e-4be6-ad15-4e50c0cfa248
+    title: Banteng
+    side: right
+    content:
+      - type: text
+        content: One of the larger tiger prey species is the banteng, these are large wild cattle and are classified as Endangered by the IUCN. Historic hunting and a current snaring crisis in Southeast Asia have caused a decline in their populations. In Thailand, there are signs of  hope with populations increasing.
+      - type: image
+        image:
+          src: /uploads/banteng.jpg
+          alt: Banteng
+          caption: A male banteng photographed in Kuiburi National Park, Thailand. © Wayuphong Jitvijak / WWF-Greater Mekong
+      - type: text
+        content: A [recently published paper](https://www.sciencedirect.com/science/article/pii/S2351989424002166) showed that banteng populations in Huai Kha Khaeng, in the core of Thailand’s Western Forest Complex and the most important site for tigers in Southeast Asia, have doubled in the past 15 years. This is a result of strong law enforcement and a long-term investment into protection of a source tiger site.
+    frame:
+      height: 20
+      width: 15
+      x: 65.9
+      y: 54.7
+  - type: hotspots
+    id: 76ff11d8-5a24-4721-b00b-319d848496ff
+    title: Bukhara deer
+    side: right
+    content:
+      - type: text
+        content: In Central Asia a different set of species are important for tiger prey including bukhara deer. This is the Central Asian subspecies of the widespread red deer and populations are increasing thanks to conservation efforts. Restoring healthy bukhara deer numbers will be key to the success of a landmark tiger reintroduction project in the country. Tigers became extinct in Kazakhstan over 70 years ago and are planned to be reintroduced in the next few years.
+      - type: image
+        image:
+          src: /uploads/bukhara_deer.jpg
+          alt: Bukhara deer
+          caption: Newly released bukhara deer, Kazakhstan. © WWF
+    frame:
+      height: 22
+      width: 15.7
+      x: 51.8
+      y: 16.4
+  - type: hotspots
+    id: 29a62eb3-39f9-4be3-9b2f-7f07fb4bd9a3
+    title: Nilgai
+    side: right
+    content:
+      - type: text
+        content: Commonly found in India, Nilgai are the largest antelope found in Asia. Their thin legs, large torso, wide neck, and small head make them unique. Mostly found in India and some parts of Nepal, this tiger prey weighs in at roughly 100-288 kg depending whether it’s male or female.
+      - type: image
+        image:
+          src: /uploads/nilgai.jpg
+          alt: Nilgai
+          caption: Nilgai spotted in Ranthambore Tiger Reserve, India. © Ola Jennersten / WWF-Sweden
+    frame:
+      height: 35.4
+      width: 17.6
+      x: 46.7
+      y: 41
+  - type: hotspots
+    id: 6d36d386-b15a-4fe0-85d0-968b32a58ee1
+    title: CHITAL
+    side: left
+    content:
+      - type: text
+        content: Also known as spotted deer, chital are an important and abundant prey species for tigers in India and Nepal. They can also be found in Bangladesh and Bhutan and are listed as Least Concern by the IUCN.
+      - type: image
+        image:
+          src: /uploads/chital.jpg
+          alt: Chital
+          caption: Chital recorded on camera traps set up to monitor wildlife in the Khata Corridor, Nepal. © DoFSC / WWF Nepal
+    frame:
+      height: 15.7
+      width: 11.7
+      x: 56.1
+      y: 40.4
+  - type: texts
+    text: These are just a few examples of the many tiger prey species, other important ungulates for tigers in parts of their range include gaur, roe deer, sika deer, hog deer, muntjac, barasingha, and eld’s deer.

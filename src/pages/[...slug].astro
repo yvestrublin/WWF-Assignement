@@ -1,0 +1,46 @@
+---
+import {
+  getCollection,
+  type CollectionEntry,
+} from 'astro:content';
+
+import PageLayout from '../layouts/PageLayout.astro';
+import PageRenderer from '../components/PageRenderer.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+
+  return pages.map((page) => ({
+    params: {
+      slug: page.id,
+    },
+    props: {
+      page,
+    },
+  }));
+}
+
+interface Props {
+  page: CollectionEntry<'pages'>;
+}
+
+const { page } = Astro.props;
+
+let scroller: CollectionEntry<'scrollers'> | undefined;
+
+if (page.data.scroller) {
+  const scrollers = await getCollection('scrollers');
+
+  scroller = scrollers.find(
+    (entry) =>
+      entry.data.scroller_id === page.data.scroller
+  );
+}
+---
+
+<PageLayout title={page.data.title}>
+  <PageRenderer
+    page={page}
+    scroller={scroller}
+  />
+</PageLayout>

@@ -1,0 +1,13 @@
+@import "fonts.css";
+
+@import "tailwindcss";
+
+/* WWF breakpoints */
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 620px;
+  --breakpoint-md: 900px;
+  --breakpoint-lg: 1100px;
+  --breakpoint-xl: 1400px;
+  --breakpoint-2xl: 1750px;
+}

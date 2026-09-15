@@ -1,0 +1,94 @@
+#:schema https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+collections:          
+  - name: scrollers
+    label: Scrollers
+    label_singular: Scroller
+    folder: /src/content/scrollers
+    format: yaml
+
+    fields:
+
+      - name: scroller_id
+        label: Scroller ID
+        widget: uuid
+      - name: title
+        label: Section title
+        widget: string
+
+      - name: image
+        label: Image
+        widget: image
+        required: true
+
+      - name: blocks
+        label: Blocks
+        widget: list
+        label_singular: Block
+        allow_reorder: true
+        types:
+          - name: texts
+            label: Text
+            widget: object
+            fields: 
+              - name: text
+                widget: richtext
+
+          - name: hotspots
+            label: Hotspot
+            widget: object
+            summary: "{{title}}"
+            fields:
+              - name: id
+                label: Hotspot ID
+                widget: uuid
+
+              - name: title
+                label: Title
+                widget: string
+
+              - name: side
+                label: Content position
+                widget: select
+                options:
+                  - left
+                  - right
+                default: right
+                
+              - name: frame
+                label: Position and size (drag and drop)
+                widget: hotspot-frame
+
+              - name: content
+                label: Content
+                widget: list
+                label_singular: Content block
+                allow_reorder: true
+                types:
+
+                  - name: text
+                    label: Text
+                    fields:
+                      - name: content
+                        label: Text
+                        widget: richtext
+
+                  - name: image
+                    label: Image
+                    fields:
+                      - name: image
+                        label: Image
+                        widget: object
+                        fields:
+                          - name: src
+                            label: Image
+                            widget: image
+
+                          - name: alt
+                            label: Alternative text
+                            widget: string
+
+                          - name: caption
+                            label: Caption
+                            widget: string
+                            required: false

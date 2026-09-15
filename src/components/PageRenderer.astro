@@ -1,0 +1,41 @@
+---
+import { markdown } from '@astropub/md';
+
+import type { CollectionEntry } from 'astro:content';
+
+import Scroller from './blocks/Scroller.astro';
+
+interface Props {
+  page: CollectionEntry<'pages'>;
+  scroller?: CollectionEntry<'scrollers'>;
+}
+
+const { page, scroller } = Astro.props;
+---
+
+<!-- Section Héro / Image de couverture pleine hauteur -->
+<section class="sticky top-0 z-1 h-screen w-full overflow-hidden flex items-center justify-center bg-gray-900">
+  <figure class="w-full h-full">
+    <img
+    class="w-full h-full object-cover object-center"
+    src={page.data.image?.src}
+    alt={page.data.image?.alt}
+    />
+  </figure>
+</section>
+
+{scroller && (
+  <Scroller scroller={scroller.data} />
+  )}
+  
+  <!-- Section Contenu principal élargie sur desktop -->
+  <section class="relative z-10 bg-white py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-12 shadow-2xl">
+    <div class="max-w-3xl md:max-w-5xl lg:max-w-6xl mx-auto">
+      {page.data.content && (
+        <div 
+        class="text-gray-800 text-base sm:text-lg leading-relaxed [&>p]:mb-6 [&>p]:leading-relaxed [&>h1]:text-3xl sm:[&>h1]:text-4xl lg:[&>h1]:text-5xl [&>h1]:font-bold [&>h1]:mb-8 [&>h1]:text-gray-900 [&>h2]:text-2xl sm:[&>h2]:text-3xl lg:[&>h2]:text-4xl [&>h2]:font-semibold [&>h2]:mt-12 [&>h2]:mb-6 [&>h2]:text-gray-900 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:mb-6 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:mb-6 [&>blockquote]:italic [&>blockquote]:border-l-4 [&>blockquote]:border-gray-300 [&>blockquote]:pl-4 [&>blockquote]:my-6"
+        set:html={ markdown(page.data.content) }
+        />
+        )}
+      </div>
+    </section>
