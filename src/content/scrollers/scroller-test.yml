@@ -1,0 +1,21 @@
+scroller_id: bd51136d-f90f-45f1-8c2f-1c0d70672b20
+title: Scroller test
+image: /uploads/header_tiger-prey-explainer-artwork-4096x2304.jpg
+blocks:
+  - type: hotspots
+    id: 350daac0-1714-4cdc-b6bf-7492761241c8
+    title: Test Hotspot
+    side: right
+    frame:
+      height: 49.4
+      width: 23.1
+      x: 13.3
+      y: 25.7
+    content:
+      - type: text
+        content: Tempora dolores quis recusandae omnis vel qui deserunt. Omnis et optio nesciunt tempore. Iure omnis qui non nobis aperiam enim suscipit atque. Omnis maiores adipisci illo nam quis. Repudiandae et suscipit ipsa veritatis quaerat praesentium aperiam.…
+      - type: image
+        image:
+          src: /uploads/banteng.jpg
+          alt: Tempora dolores
+          caption: Tempora dolores
