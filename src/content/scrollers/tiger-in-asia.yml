@@ -28,6 +28,11 @@ blocks:
     id: ce316738-90a0-43e7-a6b9-caed5f87ffd0
     title: Wild Pig
     side: left
+    frame:
+      height: 20.6
+      width: 20
+      x: 66.1
+      y: 79.1
     content:
       - type: text
         content: Wild pigs are the most widely distributed tiger prey species and can be commonly found across Asia and occur in every landscape in which tigers are found. On the island of Sumatra (Indonesia) they are one of the most important tiger prey species. Female wild pig can have up to two litters of piglets per year, with 4-8 piglets per litter.
@@ -36,11 +41,6 @@ blocks:
           src: /uploads/wild_pig.jpg
           alt: Wild Pig
           caption: Wild boar have brown fur that provides excellent camouflage in the forest. © Ola Jennersten / WWF-Sweden
-    frame:
-      height: 20.9
-      width: 20.1
-      x: 66.1
-      y: 79.1
   - type: hotspots
     id: ddb2b9aa-6c1e-4be6-ad15-4e50c0cfa248
     title: Banteng
