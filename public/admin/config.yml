@@ -2,7 +2,7 @@
 
 backend:
   name: github
-  repo: YOUR_GITHUB_USER/YOUR_REPOSITORY
+  repo: yvestrublin/WWF-Assignement
 
 media_folder: /public/uploads
 public_folder: /uploads
