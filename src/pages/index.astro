@@ -1,0 +1,37 @@
+---
+// src/pages/index.astro
+import PageLayout from '../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+
+const pages = await getCollection('pages');
+---
+
+<PageLayout title="Specialist, Web Technologies - Assignment Tasks">
+  <main class="min-h-screen bg-white text-gray-900 px-6 py-16 sm:py-24">
+    <div class="max-w-2xl mx-auto">
+      
+      <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-gray-900 mb-10">
+        Specialist, Web Technologies - Assignment Tasks
+      </h1>
+
+      <ul class="divide-y divide-gray-100 border-y border-gray-100">
+        {pages.map((page) => (
+          <li>
+            <a
+              href={`/${page.id}`}
+              class="group flex items-center justify-between py-4 text-base text-gray-700 hover:text-black transition-colors"
+            >
+              <span class="font-medium group-hover:underline decoration-1 underline-offset-4">
+                {page.data.title ?? page.id}
+              </span>
+              <span class="text-gray-400 group-hover:text-black group-hover:translate-x-1 transition-transform text-sm">
+                &rarr;
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+    </div>
+  </main>
+</PageLayout>
