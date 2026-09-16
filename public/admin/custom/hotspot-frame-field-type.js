@@ -268,21 +268,5 @@
     },
   });
 
-  // Preview (in the right panel, "collapsed list" mode)
-
-  var FramePreview = createClass({
-    render: function () {
-      var value = this.props.value;
-      if (!value || typeof value !== 'object') {
-        return null;
-      }
-      return h(
-        'span',
-        { style: { fontSize: '12px', color: '#666' } },
-        'x:' + value.x + '% y:' + value.y + '%  ' + value.width + '%×' + value.height + '%',
-      );
-    },
-  });
-
-  CMS.registerFieldType('hotspot-frame', FrameControl, FramePreview);
+  CMS.registerFieldType('hotspot-frame', FrameControl);
 })();
