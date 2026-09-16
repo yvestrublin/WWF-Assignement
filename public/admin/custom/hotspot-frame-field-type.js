@@ -191,7 +191,7 @@
                 maxWidth: '100%',
                 lineHeight: 0,
                 userSelect: 'none',
-                overflow: 'hidden', // visual safety net: never show a frame past the image
+                overflow: 'hidden', // never show a frame past the image
               },
             },
             h('img', {
@@ -285,105 +285,4 @@
   });
 
   CMS.registerFieldType('hotspot-frame', FrameControl, FramePreview);
-
-  // Preview template
-
-  function toPlainArray(value) {
-    if (!value) {
-      return [];
-    }
-    if (typeof value.toJS === 'function') {
-      return value.toJS();
-    }
-    return Array.isArray(value) ? value : [];
-  }
-
-  var ScrollerVisualPreview = createClass({
-    render: function () {
-      var entry = this.props.entry;
-      var getAsset = this.props.getAsset;
-
-      var title = entry.getIn(['data', 'title']) || '';
-      var imagePath = entry.getIn(['data', 'image']);
-      var imageAsset = imagePath ? getAsset(imagePath) : null;
-
-      var blocks = toPlainArray(entry.getIn(['data', 'blocks']));
-      var hotspots = blocks.filter(function (block) {
-        return block && block.type === 'hotspots';
-      });
-
-      return h(
-        'div',
-        { style: { fontFamily: 'sans-serif', padding: '16px', boxSizing: 'border-box' } },
-
-        title && h('h1', { style: { fontSize: '18px', margin: '0 0 12px', fontWeight: 600 } }, title),
-
-        !imageAsset &&
-          h('p', { style: { color: '#999', fontStyle: 'italic' } }, 'Add an image to display the preview.'),
-
-        imageAsset &&
-          h(
-            'div',
-            { style: { position: 'relative', display: 'inline-block', maxWidth: '100%', lineHeight: 0 } },
-            h('img', {
-              src: imageAsset.url,
-              alt: title,
-              style: { display: 'block', maxWidth: '100%', height: 'auto' },
-            }),
-            hotspots.map(function (hotspot, index) {
-              var frame = hotspot.frame;
-              if (!frame) {
-                return null;
-              }
-              var x = frame.x, y = frame.y, width = frame.width, height = frame.height;
-              var hasCoords = [x, y, width, height].every(function (v) {
-                return v !== undefined && v !== null && !isNaN(v);
-              });
-              if (!hasCoords) {
-                return null;
-              }
-              var label = hotspot.title || 'Hotspot ' + (index + 1);
-
-              return h(
-                'div',
-                {
-                  key: hotspot.id || index,
-                  style: {
-                    position: 'absolute',
-                    left: x + '%',
-                    top: y + '%',
-                    width: width + '%',
-                    height: height + '%',
-                    border: '2px solid #ff3d71',
-                    background: 'rgba(255, 61, 113, 0.15)',
-                    boxSizing: 'border-box',
-                    pointerEvents: 'none',
-                  },
-                },
-                h(
-                  'span',
-                  {
-                    style: {
-                      position: 'absolute',
-                      top: '-1.5em',
-                      left: 0,
-                      fontSize: '11px',
-                      lineHeight: 1.5,
-                      background: '#ff3d71',
-                      color: '#fff',
-                      padding: '1px 6px',
-                      borderRadius: '3px',
-                      whiteSpace: 'nowrap',
-                    },
-                  },
-                  label,
-                ),
-              );
-            }),
-          ),
-      );
-    },
-  });
-
-  CMS.registerPreviewTemplate('scrollers_visual', ScrollerVisualPreview);
 })();
