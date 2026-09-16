@@ -21,7 +21,7 @@ const { scroller } = Astro.props;
       {/* Zoomed object */}
       <div class="scroller__zoom relative origin-center transition-transform will-change-transform duration-1000 ease-in-out">
         
-        <img src={scroller.image} alt="Zoom background" class="[image-rendering:auto]"/>
+        <img src={scroller.image} alt="Zoom background"/>
 
         {/* Hotspots boxes */}
         {scroller.blocks.map(block => (
