@@ -178,7 +178,6 @@ const { scroller } = Astro.props;
       const zoomX = width > 0 ? targetFillX / width : 1;
       const zoomY = height > 0 ? targetFillY / height : 1;
       
-      // Sometimes get a weird behaviour, need to investigate
       // const zoomFactor = Math.min(zoomX, zoomY);
       const zoomFactor = zoomX;
 
